@@ -4,7 +4,7 @@ import { data } from "./data";
 const { text } = data;
 ---
 
-<button class="add-bag" data-add-to-bag disabled>
+<button class="add-bag" data-add-to-bag>
   {text}
 </button>
 <style lang="scss">
@@ -15,18 +15,16 @@ const { text } = data;
     background-color: #eb503e;
     color: #f2f2f2;
     font-weight: 500;
-    transition: all .3s ease 0s;
 
     &[disabled] {
-      opacity: .4;
-      pointer-events: none
+      // display: none;
     }
 
-    &:not(:disabled) {
-      &:is(:hover) {
-        background-color: #e23b28;
-        cursor: pointer;
-      }
+    @include easy(background-color);
+
+    &:is(:hover) {
+      background-color: #e23b28;
+      cursor: pointer;
     }
 
     @include des {

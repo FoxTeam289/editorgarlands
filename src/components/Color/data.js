@@ -1,5 +1,3 @@
-/** @format */
-
 export const data = {
   title: "Выбрать цвет гирлянды",
   items: [
@@ -9,19 +7,19 @@ export const data = {
         {
           id: "black",
           value: "черный",
-          price: "0",
+          price: "1000",
           active: true,
         },
         {
           id: "orange",
           value: "оранжевый",
-          price: "0",
+          price: "1000",
           active: false,
         },
         {
           id: "white",
           value: "белый",
-          price: "0",
+          price: "1000",
           active: false,
         },
       ],

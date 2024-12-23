@@ -3,26 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import Garlands from "../components/Garlands";
 ---
 
-<Layout title="Гирлянды КОНСТРУКТОР">
+<Layout title="Гирлянда">
   <Garlands />
 </Layout>
 
-<style lang="scss">
-  body {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .5s ease 0s;
-
-    &.ready {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-</style>
-
 <script>
-  import { pacman } from "../scripts/pacman";
+  import { initGarlands } from "../scripts/garlands/initGarlands";
 
-  pacman()
-
+  initGarlands();
 </script>

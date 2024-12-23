@@ -1,5 +1,3 @@
-/** @format */
-
 import { addSelect } from "../addSelect";
 import { blocksChecking } from "../blocksChecking";
 import { addToBag } from "../addToBag";
@@ -8,7 +6,6 @@ const totalPrice = document.querySelector("[data-total]");
 const inputs = document.querySelectorAll("[data-input]");
 const inputText = document.querySelector("[data-input-text]");
 const symbols = document.querySelectorAll("[data-symbol]");
-const btn = document.querySelector("[data-add-to-bag]");
 const data = {};
 const dataPrice = {};
 
@@ -36,7 +33,8 @@ const totalSum = (input, priceValue, type = false) => {
         return 0;
       }
 
-      const visibleCharPattern = /[\uD800-\uDBFF][\uDC00-\uDFFF]|[\u0020-\u007E\u00A0-\uD7FF\uE000-\uFEFE]/g;
+      const visibleCharPattern =
+        /[\uD800-\uDBFF][\uDC00-\uDFFF]|[\u0020-\u007E\u00A0-\uD7FF\uE000-\uFEFE]/g;
       const matches = el.match(visibleCharPattern);
 
       return matches ? matches.filter((char) => !/^\s*$/.test(char)).length : 0;
@@ -51,7 +49,10 @@ const totalSum = (input, priceValue, type = false) => {
     dataPrice[input.name] = Number(input.dataset.price);
   }
 
-  const sum = Object.values(dataPrice).reduce((acc, currentValue) => acc + currentValue, 0);
+  const sum = Object.values(dataPrice).reduce(
+    (acc, currentValue) => acc + currentValue,
+    0,
+  );
 
   totalPrice.innerHTML = sum;
 
@@ -70,7 +71,9 @@ const changeColor = () => {
   symbols.forEach((symbol) => {
     const color = symbol.dataset.symbolColor;
 
-    colors[color] !== typeColor ? symbol.classList.add("hide") : symbol.classList.remove("hide");
+    colors[color] !== typeColor
+      ? symbol.classList.add("hide")
+      : symbol.classList.remove("hide");
   });
 };
 
@@ -87,7 +90,10 @@ const emojiSelection = (productsWrapper, priceValue) => {
       let cursorStart = inputElement.selectionStart;
       let cursorEnd = inputElement.selectionEnd;
 
-      const newValue = currentValue.slice(0, cursorStart) + text + currentValue.slice(cursorEnd);
+      const newValue =
+        currentValue.slice(0, cursorStart) +
+        text +
+        currentValue.slice(cursorEnd);
 
       inputElement.value = newValue;
 
@@ -96,8 +102,6 @@ const emojiSelection = (productsWrapper, priceValue) => {
 
       inputElement.setSelectionRange(cursorStart, cursorEnd);
       inputElement.focus();
-
-      inputElement.value === "" ? (btn.disabled = true) : (btn.disabled = false);
 
       totalSum(inputText, priceValue, "text");
       data[inputText.name] = inputText.value;
@@ -123,6 +127,7 @@ const setupCounter = (priceValue, productsWrapper) => {
     number.innerHTML = fasteningQuantity;
 
     totalSum({ name: "fastening-quantity" }, priceValue, "counter");
+    console.log(fasteningQuantity);
 
     if (count > 0) {
       data["fastening-quantity"] = fasteningQuantity;
@@ -221,15 +226,13 @@ export const initGarlands = () => {
     });
   });
 
-  inputText.addEventListener("input", ({ target }) => {
+  inputText.addEventListener("input", () => {
     totalSum(inputText, priceValue, "text");
 
     checkForEmptyText(inputText);
 
     data[inputText.name] = inputText.value;
     addSelect(productsWrapper, data);
-
-    target.value === "" ? (btn.disabled = true) : (btn.disabled = false);
   });
 
   emojiSelection(productsWrapper, priceValue);
