@@ -1,0 +1,74 @@
+---
+import { data } from "./data";
+
+const { price, text } = data;
+---
+
+<div class="alert">
+  <span set:html={price} />
+  <span set:html={text} />
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .alert {
+    background: #fce6e4;
+    display: inline-flex;
+
+    color: #241f1f;
+    font-weight: 400;
+
+    display: inline-flex;
+
+    & span {
+      &:first-of-type {
+        line-height: 90%;
+      }
+
+      &:last-of-type {
+        line-height: 110%;
+      }
+    }
+
+    @include des {
+      border-radius: d(10);
+      padding: d(10) d(15);
+      margin-bottom: d(30);
+      align-items: flex-end;
+
+      & span {
+        &:first-of-type {
+          font-size: d(24);
+          letter-spacing: d(-0.72);
+        }
+
+        &:last-of-type {
+          font-size: d(14);
+          letter-spacing: d(-0.3);
+
+          & br {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @include mob {
+      border-radius: m(10);
+      padding: m(10) m(15);
+      align-items: center;
+
+      & span {
+        &:first-of-type {
+          font-size: m(15);
+          letter-spacing: m(-0.45);
+        }
+
+        &:last-of-type {
+          font-size: m(10);
+          letter-spacing: m(-0.2);
+        }
+      }
+    }
+  }
+</style>

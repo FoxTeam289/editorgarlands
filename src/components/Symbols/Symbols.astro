@@ -1,0 +1,144 @@
+---
+import { data } from "./data";
+
+const { symbols } = data;
+---
+
+<div class="symbols" data-symbols>
+  <h2 class="symbols__title">Добавить символ</h2>
+  <div class="symbols__wrap">
+    {
+      symbols.map(({ el, color, s }, ind) => (
+        <div class="item hide" data-symbol data-symbol-color={color}>
+          <img class="item__icon" src={el} alt="" />
+          <span class="item__s" set:html={s} />
+        </div>
+      ))
+    }
+  </div>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .symbols {
+    width: 100%;
+
+    @include des {
+      margin-bottom: d(24);
+    }
+
+    @include mob {
+      margin-bottom: m(30);
+    }
+
+    &__title {
+      color: #241f1f;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        margin-bottom: d(12);
+        font-size: d(18);
+        letter-spacing: d(-0.54);
+      }
+
+      @include mob {
+        margin-bottom: m(12);
+        font-size: m(15);
+        letter-spacing: m(-0.45);
+      }
+    }
+
+    &__wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+
+      @include des {
+        grid-gap: d(12);
+      }
+
+      @include mob {
+        grid-gap: m(7);
+      }
+    }
+
+    & .item {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-style: solid;
+      border-color: #e7e4e4;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include des {
+        border-radius: d(14);
+        border-width: d(1);
+      }
+
+      @include mob {
+        border-radius: m(10);
+        border-width: m(1);
+        @include easy(transform);
+      }
+
+      @media (hover: hover) {
+        @include easy(all);
+        cursor: pointer;
+
+        &:hover {
+          &[data-symbol-color="white"] {
+            background-color: #9b9b9b;
+          }
+          &[data-symbol-color="black"] {
+            border-color: #241f1f;
+          }
+          &[data-symbol-color="red"] {
+            border-color: #eb503e;
+          }
+        }
+      }
+
+      &:active {
+        transform: scale(0.8);
+      }
+
+      &[data-symbol-color="white"] {
+        background-color: #241f1f;
+      }
+
+      &.hide {
+        display: none;
+      }
+
+      &__icon {
+        position: relative;
+        object-fit: contain;
+        aspect-ratio: 1/1;
+        pointer-events: none;
+        z-index: 1;
+
+        @include des {
+          width: d(40);
+        }
+
+        @include mob {
+          width: m(24);
+        }
+      }
+
+      &__s {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        opacity: 0;
+      }
+    }
+  }
+</style>

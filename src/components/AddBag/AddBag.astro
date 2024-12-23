@@ -1,0 +1,42 @@
+---
+import { data } from "./data";
+
+const { text } = data;
+---
+
+<button class="add-bag" data-add-to-bag>
+  {text}
+</button>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .add-bag {
+    width: 100%;
+    background-color: #eb503e;
+    color: #f2f2f2;
+    font-weight: 500;
+
+    &[disabled] {
+      // display: none;
+    }
+
+    @include easy(background-color);
+
+    &:is(:hover) {
+      background-color: #e23b28;
+      cursor: pointer;
+    }
+
+    @include des {
+      height: d(68);
+      border-radius: d(20);
+      font-size: d(15);
+    }
+
+    @include mob {
+      height: m(58);
+      border-radius: m(14);
+      font-size: m(14);
+    }
+  }
+</style>

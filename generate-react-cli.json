@@ -1,0 +1,23 @@
+{
+  "usesTypeScript": false,
+  "usesCssModule": false,
+  "cssPreprocessor": "scss",
+  "testLibrary": false,
+  "component": {
+    "default": {
+      "customTemplates": {
+        "component": "templates/default/TemplateName.astro",
+        "data": "templates/default/data.js",
+        "index": "templates/default/index.js"
+      },
+      "path": "src/components",
+      "withLazy": false,
+      "withStory": false,
+      "withStyle": false,
+      "withTest": false,
+      "withIndex": true,
+      "withData": true
+    }
+  },
+  "usesStyledComponents": true
+}

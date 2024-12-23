@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Garlands from "../components/Garlands";
+---
+
+<Layout title="Индивидуальный Браслет">
+  <Garlands />
+</Layout>
+
+<script>
+  import { initGarlands } from "../scripts/garlands/initGarlands";
+
+  initGarlands();
+</script>

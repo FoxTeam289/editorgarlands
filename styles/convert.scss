@@ -1,0 +1,10 @@
+$viewportDesktop: 1616;
+$viewportMobile: 320;
+
+@function d($pxValue) {
+  @return calc($pxValue / $viewportDesktop * 100vw);
+}
+
+@function m($pxValue) {
+  @return calc($pxValue / $viewportMobile * 100vw);
+}

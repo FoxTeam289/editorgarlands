@@ -1,0 +1,265 @@
+---
+import { data } from "./data";
+
+const { info, title, price } = data;
+---
+
+<div class="fastening">
+  <p class="fastening__info">{info}</p>
+  <div class="fastening__wrap">
+    <div class="fastening__col">
+      <h2 class="fastening__title">{title}</h2>
+      <span class="fastening__price">+&nbsp;{price}&nbsp;₽</span>
+    </div>
+    <div class="counter" data-counter>
+      <button class="counter__btn" data-counter-btn-minus>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="8"
+          height="2"
+          viewBox="0 0 8 2"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0.5 1C0.5 0.723858 0.723858 0.5 1 0.5H7C7.27614 0.5 7.5 0.723858 7.5 1C7.5 1.27614 7.27614 1.5 7 1.5H1C0.723858 1.5 0.5 1.27614 0.5 1Z"
+            fill="black"></path>
+        </svg>
+      </button>
+      <span class="counter__number" data-counter-number>0</span>
+      <button class="counter__btn" data-counter-btn-plus>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="7"
+          height="7"
+          viewBox="0 0 7 7"
+          fill="none"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0 3.5C0 3.22386 0.223858 3 0.5 3H6.5C6.77614 3 7 3.22386 7 3.5C7 3.77614 6.77614 4 6.5 4H0.5C0.223858 4 0 3.77614 0 3.5Z"
+            fill="black"></path>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.5 0C3.77614 1.20706e-08 4 0.223858 4 0.5L4 6.5C4 6.77614 3.77614 7 3.5 7C3.22386 7 3 6.77614 3 6.5L3 0.5C3 0.223858 3.22386 -1.20706e-08 3.5 0Z"
+            fill="black"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .fastening {
+    width: 100%;
+
+    @include des {
+      margin-bottom: d(30);
+    }
+
+    @include mob {
+      margin-bottom: m(20);
+    }
+
+    &__info {
+      color: #6b6663;
+      font-weight: 500;
+
+      @include des {
+        font-size: d(14);
+        letter-spacing: d(-0.28);
+        margin-bottom: d(12);
+      }
+
+      @include mob {
+        font-size: m(12);
+        letter-spacing: m(-0.24);
+        margin-bottom: m(24);
+      }
+    }
+
+    &__wrap {
+      background-color: #fcfafa;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include des {
+        border-radius: d(20);
+        padding: d(16) d(16) d(16) d(20);
+        grid-gap: d(15);
+      }
+
+      @include mob {
+        border-radius: m(14);
+        padding: m(15);
+        grid-gap: m(15);
+      }
+    }
+
+    &__col {
+      display: flex;
+      align-items: center;
+
+      @include des {
+        grid-gap: d(15);
+      }
+
+      @include mob {
+        grid-gap: m(15);
+      }
+    }
+
+    &__title {
+      color: #241f1f;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        font-size: d(18);
+        letter-spacing: d(-0.54);
+      }
+
+      @include mob {
+        font-size: m(12);
+        letter-spacing: m(-0.36);
+        flex: 0;
+      }
+    }
+
+    &__price {
+      color: #6b6663;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        font-size: d(15);
+        letter-spacing: d(-0.45);
+      }
+
+      @include mob {
+        font-size: m(15);
+        letter-spacing: m(-0.45);
+      }
+    }
+
+    & .counter {
+      border-style: solid;
+      border-color: #cfd2d7;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include des {
+        flex: 0 0 d(118);
+        width: d(118);
+        height: d(46);
+        border-radius: d(15);
+        border-width: d(1);
+      }
+
+      @include mob {
+        flex: 0 0 m(102);
+        width: m(102);
+        height: m(38);
+        border-radius: m(8);
+        border-width: m(1);
+      }
+
+      &__btn {
+        position: relative;
+        height: 100%;
+        aspect-ratio: 1/1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: transparent;
+        border-radius: inherit;
+        border: none;
+
+        @include easy(all);
+
+        &::after {
+          content: "";
+          position: relative;
+          z-index: 1;
+          background-color: #eb503e;
+          border-radius: 50%;
+          @include easy(background-color);
+
+          @include des {
+            flex: 0 0 d(16);
+            width: d(16);
+            height: d(16);
+          }
+
+          @include mob {
+            flex: 0 0 m(14);
+            width: m(14);
+            height: m(14);
+          }
+        }
+
+        &[disabled] {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+
+        &:is(:hover) {
+          cursor: pointer;
+
+          &::after {
+            background-color: #e23b28;
+          }
+        }
+
+        &:active {
+          transform: scale(0.8);
+        }
+
+        & svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 2;
+
+          @include des {
+            width: d(6);
+            height: d(6);
+          }
+
+          @include mob {
+            width: m(6);
+            height: m(6);
+          }
+
+          & path {
+            fill: #fff;
+          }
+        }
+      }
+
+      &__number {
+        color: #1d1e20;
+        font-weight: 400;
+        line-height: 120%;
+
+        @include des {
+          font-size: d(14);
+        }
+
+        @include mob {
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,256 @@
+---
+import { data } from "./data";
+
+const { active } = Astro.props;
+const { items } = data;
+---
+
+<div class="menu">
+  <div class="menu__wrap">
+    <div class="menu__bc">
+      <a class="menu__bc-item" href="/">Главная&nbsp;&bull;&nbsp;</a>
+      <span class="menu__bc-item">Браслеты</span>
+    </div>
+    <div class="menu__bg">
+      <p class="menu__bg-title">Браслеты&nbsp;с<br />гравировкой</p>
+      <img
+        src="https://static.tildacdn.com/tild3465-6136-4537-b865-656333343131/bg.jpg"
+        alt="Menu Bg"
+      />
+    </div>
+    <div class="menu__scroll">
+      <div class="menu__scroll-wrap">
+        {
+          items.map(({ id, text }) => (
+            <a
+              href={`/${id}`}
+              class={`menu__item ${id === active ? " active" : ""}`}
+              set:html={text}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .menu {
+    background-color: #f5f5f5;
+
+    @include des {
+      padding-top: d(60);
+    }
+
+    @include mob {
+      padding-top: m(40);
+    }
+
+    &__wrap {
+      @include des {
+        width: d(1200);
+        margin: 0 auto;
+      }
+
+      @include mob {
+        padding: 0 m(10);
+      }
+    }
+
+    &__bc {
+      display: flex;
+      align-items: center;
+
+      @include des {
+        padding: d(40) 0;
+      }
+
+      @include mob {
+        padding: m(20) 0;
+      }
+
+      & a {
+        color: #828282 !important;
+
+        @include des {
+          font-size: d(14);
+        }
+
+        @include mob {
+          font-size: m(14);
+        }
+
+        @include easy(color);
+
+        &:is(:hover) {
+          color: #eb503e !important;
+        }
+      }
+
+      & span {
+        color: #333;
+
+        @include des {
+          font-size: d(15);
+        }
+
+        @include mob {
+          font-size: m(15);
+        }
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        font-weight: 350;
+      }
+    }
+
+    &__bg {
+      position: relative;
+      display: flex;
+      border-color: #e0dbdb;
+      border-style: solid;
+      overflow: hidden;
+
+      & img {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.01);
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+      }
+
+      @include des {
+        width: d(1200);
+        height: d(256);
+        margin: 0 auto;
+        padding: d(40);
+        border-radius: d(35);
+        border-width: d(1);
+      }
+
+      @include mob {
+        width: 100%;
+        height: m(164);
+        padding: m(20);
+        margin: 0 auto;
+        border-radius: m(20);
+        border-width: m(1);
+        align-items: flex-end;
+      }
+
+      &-title {
+        position: relative;
+        color: #fcfafa;
+        font-weight: 350;
+        line-height: 110%;
+        z-index: 2;
+
+        @include des {
+          font-size: d(48);
+          letter-spacing: d(-0.96);
+        }
+
+        @include mob {
+          font-size: m(28);
+          letter-spacing: m(-1.12);
+        }
+      }
+    }
+
+    &__scroll {
+      @include des {
+        padding: d(30) 0 d(50);
+        margin: 0 auto;
+      }
+
+      @include mob {
+        width: 100vw;
+        margin: 0 m(-10);
+        padding: m(20) 0;
+        height: m(90);
+        overflow: hidden;
+      }
+
+      &-wrap {
+        display: flex;
+        background-color: inherit;
+
+        @include des {
+          flex-wrap: wrap;
+          grid-gap: d(10);
+        }
+
+        @include mob {
+          height: m(100);
+          overflow-x: auto;
+          padding: 0 m(10);
+        }
+      }
+    }
+
+    &__item {
+      background-color: inherit;
+
+      color: #4f4f4f !important;
+      font-weight: 350;
+      line-height: 110%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include easy(border-color);
+
+      &:is(:hover) {
+        border-color: #eb503e;
+      }
+
+      &.active {
+        border-color: #eb503e;
+        background-color: #eb503e;
+        color: #f2f2f2 !important;
+        pointer-events: none;
+      }
+
+      @include des {
+        height: d(54);
+        border: d(1) solid #c9c7c7;
+        padding: 0 d(30);
+        font-size: d(18);
+        letter-spacing: d(-0.54);
+        border-radius: d(12);
+
+        & br {
+          display: none;
+        }
+      }
+
+      @include mob {
+        flex: 0 1 auto;
+        height: m(50);
+        border-top: m(1) solid #c9c7c7;
+        border-bottom: m(1) solid #c9c7c7;
+        border-left: m(1) solid #c9c7c7;
+        padding: 0 m(20);
+        text-align: center;
+        font-size: m(12);
+        letter-spacing: m(-0.36);
+
+        &:first-of-type {
+          border-radius: m(12) 0 0 m(12);
+        }
+
+        &:last-of-type {
+          border-right: m(1) solid #c9c7c7;
+          border-radius: 0 m(12) m(12) 0;
+        }
+      }
+    }
+  }
+</style>

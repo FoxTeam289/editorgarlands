@@ -1,0 +1,84 @@
+---
+import { data } from "./data";
+import AddBag from "../AddBag";
+
+const { text, price } = data;
+---
+
+<div class="total">
+  <div class="total__info">
+    {text && <div class="total__text">{text}</div>}
+    {
+      price && (
+        <div class="total__price">
+          <span data-total>{price}</span>
+          <span>&nbsp;₽</span>
+        </div>
+      )
+    }
+  </div>
+  <AddBag />
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .total {
+    width: 100%;
+    border-top-style: solid;
+    border-top-color: #e0dbdb;
+
+    display: grid;
+
+    @include des {
+      border-top-width: d(1);
+      padding-top: d(30);
+      grid-template-columns: 1fr d(354);
+      grid-gap: d(20);
+    }
+
+    @include mob {
+      border-top-width: m(1);
+      padding-top: m(20);
+      grid-template-columns: 1fr;
+      grid-gap: m(15);
+    }
+
+    &__info {
+      @include mob {
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+
+    &__text {
+      color: #6b6663;
+      line-height: 130%;
+
+      @include des {
+        margin-bottom: d(m);
+        font-size: d(12);
+      }
+
+      @include mob {
+        font-size: m(12);
+        margin-right: m(12);
+      }
+    }
+
+    &__price {
+      color: #241f1f;
+      font-style: normal;
+      line-height: 110%;
+
+      @include des {
+        font-size: d(40);
+        letter-spacing: d(-1.2);
+      }
+
+      @include mob {
+        font-size: m(-0.24);
+        letter-spacing: m(-0.72);
+      }
+    }
+  }
+</style>

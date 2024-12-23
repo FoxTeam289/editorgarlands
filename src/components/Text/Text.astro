@@ -1,0 +1,189 @@
+---
+import { data } from "./data";
+
+const { title, name } = Astro.props;
+---
+
+<div class="text" data-text>
+  {title && <h2 class="text__title">{title}</h2>}
+  <div class="text__wrap">
+    <textarea
+      class="text__input"
+      placeholder={data.text ? data.text : ""}
+      data-input-text={name}
+      name={name}></textarea>
+  </div>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .text {
+    width: 100%;
+
+    @include des {
+      margin-bottom: d(24);
+    }
+
+    @include mob {
+      margin-bottom: m(30);
+    }
+
+    &__title {
+      color: #241f1f;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        margin-bottom: d(12);
+        font-size: d(18);
+        letter-spacing: d(-0.54);
+      }
+
+      @include mob {
+        margin-bottom: m(12);
+        font-size: m(15);
+        letter-spacing: m(-0.45);
+      }
+    }
+
+    &__wrap {
+      position: relative;
+
+      & button {
+        position: absolute;
+        background-color: transparent;
+
+        & svg {
+          width: 100%;
+          height: 100%;
+          @include easy(transform);
+        }
+
+        &:is(:hover) {
+          & svg {
+            transform: rotate(180deg);
+            cursor: pointer;
+          }
+        }
+
+        @include des {
+          top: d(22);
+          right: d(22);
+          width: d(22);
+          height: d(22);
+        }
+
+        @include mob {
+          top: m(14);
+          right: m(14);
+          width: m(14);
+          height: m(14);
+        }
+      }
+    }
+
+    &__input {
+      touch-action: manipulation;
+      resize: none;
+      width: 100%;
+      border-style: solid;
+      border-color: #e7e4e4;
+      background-color: #fff;
+
+      color: #6b6663;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 130%;
+      font-family: inherit;
+
+      @include des {
+        border-width: d(1);
+        border-radius: d(18);
+        height: d(80);
+        padding: d(22) d(54) d(22) d(22);
+        font-size: d(14);
+      }
+
+      @include mob {
+        border-width: m(1);
+        border-radius: m(12);
+        height: m(52);
+        padding: m(12) m(36) m(12) m(12);
+        font-size: 16px;
+      }
+    }
+
+    &__emoji {
+      &:not(.show) {
+        display: none;
+      }
+
+      display: grid;
+
+      @include des {
+        grid-template-columns: repeat(10, 1fr);
+        grid-gap: d(24);
+        margin-top: d(24);
+        padding: d(20);
+      }
+
+      @include mob {
+        grid-template-columns: repeat(10, 1fr);
+        grid-gap: m(14);
+        margin-top: m(30);
+        padding: m(10);
+      }
+
+      &:is(:hover) {
+        & > div {
+          opacity: 0.4;
+        }
+      }
+
+      &-el {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+
+        @include des {
+        }
+
+        @include mob {
+        }
+
+        @include easy(opacity);
+
+        &:is(:hover) {
+          opacity: 1 !important;
+          cursor: pointer;
+        }
+
+        & img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        & span {
+          display: block;
+          width: 100%;
+          height: 100%;
+
+          &:not([data-symbol]) {
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+          }
+
+          &[data-symbol] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+</style>

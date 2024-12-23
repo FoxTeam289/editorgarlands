@@ -1,0 +1,65 @@
+---
+import Title from "../Title";
+import Symbols from "../Symbols";
+import Text from "../Text";
+import Color from "../Color";
+import Total from "../Total";
+import Photos from "../Photos";
+import Fastening from "../Fastening";
+import Info from "../Info";
+import T762 from "../T762";
+---
+
+<div class="garlands">
+  <!-- <Menu active="individual" /> -->
+  <div class="content">
+    <div class="content__wrap">
+      <T762 />
+      <Title />
+      <Photos />
+      <Text title="Ваша фраза" name="your-phrase" />
+      <Symbols />
+      <Color />
+      <Fastening />
+      <Total />
+      <Info position={"mobile"} />
+    </div>
+  </div>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .garlands {
+    width: 100%;
+  }
+
+  .content {
+    background-color: #fff;
+
+    @include des {
+      border-radius: d(60);
+      padding: d(80) 0 d(100);
+    }
+
+    @include mob {
+      border-radius: m(20);
+      padding: m(30) m(10) m(40);
+    }
+
+    &__wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      @include des {
+        width: d(1200);
+        padding-right: d(660);
+        margin: 0 auto;
+      }
+
+      @include mob {
+      }
+    }
+  }
+</style>

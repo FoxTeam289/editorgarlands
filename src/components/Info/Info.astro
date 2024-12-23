@@ -1,0 +1,86 @@
+---
+const { position } = Astro.props;
+---
+
+<div class={`info info--${position}`}>
+  <svg
+    class="info__start"
+    xmlns="http://www.w3.org/2000/svg"
+    width="17"
+    height="17"
+    viewBox="0 0 17 17"
+    fill="none"
+  >
+    <path
+      d="M11.2743 8.7349L16.5339 11.6962L15.1638 14.1272L9.81569 10.989L9.8599 17.0001H7.20797L7.25218 10.989L1.9041 14.1272L0.533936 11.6962L5.83781 8.7349L0.533936 5.81778L1.9041 3.34264L7.25218 6.48076L7.20797 0.513916H9.8599L9.81569 6.48076L15.1638 3.34264L16.5339 5.81778L11.2743 8.7349Z"
+      fill="#EB503E"></path>
+  </svg>
+  <p class="info__text">
+    Если вы хотите сделать оптовый заказ свяжитесь с нами.
+  </p>
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .info {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    border-style: solid;
+    border-color: #e0dbdb;
+    background-color: #fff;
+
+    @include des {
+      grid-gap: d(16);
+      padding: d(20) d(78) d(20) d(58);
+      margin-top: d(40);
+      border-radius: d(16);
+      border-width: d(1);
+
+      &--mobile {
+        display: none;
+      }
+    }
+
+    @include mob {
+      grid-gap: m(15);
+      padding: m(12);
+      margin-top: m(15);
+      border-radius: m(12);
+      border-width: m(1);
+
+      &--desktop {
+        display: none;
+      }
+    }
+
+    &__star {
+      height: auto;
+
+      @include des {
+        width: d(16);
+      }
+
+      @include mob {
+        width: m(12);
+      }
+    }
+
+    &__text {
+      color: #241f1f;
+      line-height: 120%;
+
+      @include des {
+        font-size: d(18);
+        letter-spacing: d(-0.18);
+        font-weight: 500;
+      }
+
+      @include mob {
+        font-size: m(12);
+        letter-spacing: m(-0.24);
+        font-weight: 40;
+      }
+    }
+  }
+</style>

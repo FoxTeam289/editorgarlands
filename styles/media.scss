@@ -1,0 +1,14 @@
+$mediaDesktop: 576px;
+$mediaMobile: $mediaDesktop - 1px;
+
+@mixin des {
+  @media only screen and (min-width: $mediaDesktop) {
+    @content;
+  }
+}
+
+@mixin mob {
+  @media only screen and (max-width: $mediaMobile) {
+    @content;
+  }
+}

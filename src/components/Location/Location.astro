@@ -1,0 +1,224 @@
+---
+import { data } from "./data";
+
+const { title, items } = data;
+---
+
+<div class="location">
+  {title && <h2 class="location__title">{title}</h2>}
+  {
+    items && (
+      <div class="location__items">
+        {items.map(({ id, title, values }) => (
+          <div class="item">
+            {title && <h3 class="item__title">{title}</h3>}
+            {values && (
+              <div class="item__wrap">
+                {values.map((item) => (
+                  <div class="item__el">
+                    <input
+                      class="item__input"
+                      id={item.id}
+                      type="radio"
+                      value={item.value}
+                      name={id}
+                      data-input
+                      data-price={item.price ? item.price : 0}
+                      checked={item.active ? true : false}
+                      data-photo={item.photo}
+                    />
+                    <label class="item__label" for={item.id}>
+                      {item.value}
+                    </label>
+                    {item.alert && (
+                      <span class="item__alert">+{item.price}&nbsp;₽</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  }
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .location {
+    @include des {
+      background-color: #fcfafa;
+      border-radius: d(20);
+      padding: d(20);
+      margin-bottom: d(24);
+    }
+
+    @include mob {
+      width: 100%;
+      margin-bottom: m(30);
+    }
+
+    &__title {
+      color: #241f1f;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        font-size: d(18);
+        letter-spacing: d(-0.54);
+        margin-bottom: d(20);
+      }
+
+      @include mob {
+        font-size: m(15);
+        letter-spacing: m(-0.45);
+        margin-bottom: m(15);
+      }
+    }
+
+    &__items {
+      display: inline-flex;
+      flex-direction: column;
+      width: 100%;
+
+      @include des {
+        grid-gap: d(20);
+      }
+
+      @include mob {
+        grid-gap: m(15);
+      }
+    }
+  }
+
+  .item {
+    &__title {
+      color: #6b6663;
+      font-weight: 500;
+      line-height: 130%;
+
+      @include des {
+        font-size: d(15);
+        letter-spacing: d(-0.15);
+        margin-bottom: d(10);
+      }
+
+      @include mob {
+        font-size: m(10);
+        letter-spacing: m(-0.36);
+        margin-bottom: m(10);
+      }
+    }
+
+    &__wrap {
+      display: grid;
+
+      @include des {
+        grid-template-columns: auto auto auto;
+        grid-gap: d(10);
+      }
+
+      @include mob {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: m(10);
+      }
+    }
+
+    &__el {
+      position: relative;
+
+      @include mob {
+        width: 100%;
+
+        &:last-of-type {
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+      }
+    }
+
+    &__input {
+      display: none;
+
+      &:checked + label {
+        border-color: #eb503e;
+      }
+    }
+
+    &__label {
+      color: #241f1f;
+      font-weight: 500;
+      line-height: 130%;
+      border-style: solid;
+      border-color: #e7e4e4;
+      background-color: #fff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include easy(border-color);
+
+      @include des {
+        width: d(150);
+        height: d(60);
+        border-radius: d(16);
+        border-width: d(1);
+
+        font-size: d(15);
+        letter-spacing: d(-0.3);
+      }
+
+      @include mob {
+        width: 100%;
+        padding: m(12) m(20);
+        border-radius: m(10);
+
+        font-size: m(12);
+        letter-spacing: m(-0.24);
+        border-width: m(1);
+      }
+
+      &:is(:hover) {
+        border-color: #eb503e;
+        cursor: pointer;
+      }
+    }
+
+    &__alert {
+      position: absolute;
+      background-color: #fce6e4;
+      color: #241f1f;
+
+      font-weight: 500;
+      line-height: 110%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include des {
+        padding: 0 d(5);
+        height: d(22);
+        font-size: d(12);
+        letter-spacing: d(-0.6);
+        border-radius: d(7);
+        top: 0;
+        right: 0;
+        transform: rotate(3deg) translateY(d(-7));
+      }
+
+      @include mob {
+        padding: 0 m(3);
+        height: m(18);
+        font-size: m(10);
+        letter-spacing: m(-0.5);
+        border-radius: m(4);
+        top: 50%;
+        right: m(56);
+        transform: translateY(-50%);
+      }
+    }
+  }
+</style>

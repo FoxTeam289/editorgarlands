@@ -1,0 +1,40 @@
+---
+import { data } from "./data";
+import Alert from "../Alert";
+
+const { text } = data;
+---
+
+<div class="wrap">
+  <h1 class="title" set:html={text} />
+  <Alert />
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .wrap {
+    @include mob {
+      display: flex;
+      align-items: center;
+      margin-bottom: m(20);
+    }
+  }
+
+  .title {
+    width: 100%;
+    color: #241f1f;
+    font-weight: 500;
+    line-height: 110%;
+
+    @include des {
+      font-size: d(40);
+      letter-spacing: d(-1.6);
+      margin-bottom: d(20);
+    }
+
+    @include mob {
+      font-size: m(18);
+      letter-spacing: m(-0.72);
+    }
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import { imgs } from "./data";
+import Info from "../Info";
+---
+
+<div class="photos" data-photos>
+  <div class="photos__wrap">
+    {
+      imgs.map(({ src, active }) => (
+        <img class={active ? "show" : ""} data-photo-el src={src} alt="" />
+      ))
+    }
+  </div>
+  <div class="photos__nav">
+    {
+      imgs.map(({ active }) => (
+        <span class={active ? "show" : ""} data-nav-el />
+      ))
+    }
+  </div>
+  <Info position={"desktop"} />
+</div>
+<style lang="scss">
+  @import "../styles/settings";
+
+  .photos {
+    position: relative;
+
+    @include easy(opacity);
+
+    @include des {
+      width: d(590);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    @include mob {
+      width: 100%;
+      margin-bottom: m(20);
+    }
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    &__wrap {
+      position: relative;
+      overflow: hidden;
+
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+        opacity: 0;
+        pointer-events: none;
+
+        @include easy(opacity);
+
+        &.show {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+
+      @include des {
+        padding-bottom: 100%;
+        border-radius: d(30);
+      }
+
+      @include mob {
+        padding-bottom: 100%;
+        border-radius: m(18);
+      }
+    }
+
+    &__nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include des {
+        margin-top: d(20);
+      }
+
+      @include mob {
+        margin-top: m(15);
+      }
+
+      & span {
+        border-radius: 50%;
+        background-color: #e0dbdb;
+
+        @include easy(background-color);
+
+        @media (hover: hover) {
+          cursor: pointer;
+
+          &:hover {
+            background-color: #e7948b;
+          }
+        }
+
+        &.show {
+          background-color: #eb503e;
+        }
+
+        @include des {
+          width: d(14);
+          height: d(14);
+          margin: 0 d(4);
+        }
+
+        @include mob {
+          width: m(8);
+          height: m(8);
+          margin: 0 m(3);
+        }
+      }
+    }
+  }
+</style>
